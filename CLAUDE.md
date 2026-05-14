@@ -51,6 +51,8 @@ uv run nuphy-rgb.py preset-save <name>  # capture current keyboard state as pres
 uv run nuphy-rgb.py preset-list         # list all presets
 ```
 
+Current presets: `warm-white` (effect=1, hue=0, sat=195, brightness=202).
+
 Effect index → name mapping: see README.md for the full table.
 
 ## ryodeushii/qmk-firmware — community fork

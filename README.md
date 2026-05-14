@@ -39,6 +39,12 @@ uv run nuphy-rgb.py preset-save <name>  # capture current keyboard state as pres
 uv run nuphy-rgb.py preset-list         # list all presets
 ```
 
+Current presets (`config/presets.json`):
+
+| Name | Effect | Hue | Sat | Brightness |
+|------|--------|-----|-----|------------|
+| warm-white | 1 (Solid Color) | 0 | 195 | 202 |
+
 ### Examples
 
 Solid warm white (hue=0, sat=195, brightness=202):
