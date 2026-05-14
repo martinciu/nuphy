@@ -1,0 +1,18 @@
+# Claude
+.claude/worktrees/
+.claude/settings.local.json
+.superpowers/
+.autonomo/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+.uv/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
