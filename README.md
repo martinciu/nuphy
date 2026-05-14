@@ -92,5 +92,4 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ## Notes
 
-- `qmk_hid` is installed but only effect switching works — color/brightness/save are broken due to firmware using VIA v3 custom menu protocol that `qmk_hid` doesn't implement correctly. Use `nuphy-rgb.py` instead.
 - `nuphy-rgb.py` preloads `/opt/homebrew/lib/libhidapi.dylib` at startup — requires `brew install hidapi`.
