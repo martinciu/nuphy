@@ -41,6 +41,11 @@ uv run nuphy-rgb.py preset-list         # list all presets
 
 ### Examples
 
+Solid warm white (hue=0, sat=195, brightness=202):
+```fish
+uv run nuphy-rgb.py preset warm-white
+```
+
 Typing heatmap:
 ```fish
 uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
