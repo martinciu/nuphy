@@ -33,9 +33,11 @@ uv run nuphy-rgb.py effect <0-40>
 uv run nuphy-rgb.py color <hue 0-255> <sat 0-255>   # hue: 0=red 85=green 170=blue
 uv run nuphy-rgb.py brightness <0-255>
 uv run nuphy-rgb.py speed <0-255>
-uv run nuphy-rgb.py read                             # read current settings from keyboard
+uv run nuphy-rgb.py read                             # read effect, color, brightness, speed from keyboard
 uv run nuphy-rgb.py save
 ```
+
+`read` prints current keyboard state — useful for capturing settings applied via VIA before saving as a preset with `preset-save`.
 
 **`save` is not implicit** — settings revert on power cycle without it. Chain commands:
 
