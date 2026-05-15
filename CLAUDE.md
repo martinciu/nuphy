@@ -10,7 +10,10 @@ Key files:
 - `config/nuphy-air75-v2-via3.json` — keyboard definition (matrix layout, lighting menus, custom keycodes). Load this in VIA under "Design" → "Load Draft Definition".
 - `config/martinciu.layout.json` — personal keymap export (8 layers, macros). Restore via VIA's "Save+Load" tab.
 - `config/presets.json` — named RGB presets (used by `nuphy-rgb.py preset*` commands).
-- `ext/` — git submodules: `qmk-firmware` (ryodeushii fork), `the-via/app`, `the-via/reader`, `the-via/devtools`.
+- `ext/qmk-firmware/` — ryodeushii community firmware fork (NuPhy-only, branch `nuphy-keyboards`)
+- `ext/the-via/app` — VIA browser app source
+- `ext/the-via/reader` — VIA definition JSON parser/validator library
+- `ext/the-via/devtools` — Chrome extension for debugging raw VIA HID commands
 
 ## Key concepts
 
@@ -30,7 +33,7 @@ Key files:
 
 ```fish
 uv run nuphy-rgb.py effect <0-40>
-uv run nuphy-rgb.py effects                          # list all effects (⌨ marks interactive)
+uv run nuphy-rgb.py effects                          # list all effects (⌨ marks interactive) — no keyboard needed
 uv run nuphy-rgb.py color <hue 0-255> <sat 0-255>   # hue: 0=red 85=green 170=blue
 uv run nuphy-rgb.py rgb <r> <g> <b>                 # set color by RGB values
 uv run nuphy-rgb.py rgb <#rrggbb>                   # set color by hex
@@ -86,7 +89,7 @@ Alternatively flash a pre-built `.bin` via [QMK Toolbox](https://github.com/qmk/
 - Layer 4: Side LED controls (hold `Fn+M`)
 - Layer 5: Ambient LED controls (hold `Fn+N`)
 
-**Key Fn-layer bindings** (`keyboards/nuphy/air75v2/ansi/keymaps/default/keymap.c`):
+**Key Fn-layer bindings** (`ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/keymap.c`):
 
 | Keys | Action |
 |------|--------|
