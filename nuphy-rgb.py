@@ -25,12 +25,7 @@ PRESETS_FILE = Path(__file__).parent / "config" / "presets.json"
 CUSTOM_MENU_SET = 0x07
 CUSTOM_MENU_GET = 0x08
 CUSTOM_MENU_SAVE = 0x09
-CHANNEL = 3            # backlight (QMK rgb_matrix)
-CUSTOM_CHANNEL = 0     # nuphy custom: side + ambient + common config
-
-SIDE_MODE_NAMES = ["Wave", "Mix", "Static", "Breath", "Off"]
-SIDE_IDS = {"mode": 10, "speed": 11, "color": 14, "brightness": 13}
-AMBIENT_IDS = {"mode": 20, "speed": 21, "color": 24, "brightness": 23}
+CHANNEL = 3
 
 INTERACTIVE_EFFECTS = {27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40}
 
@@ -175,20 +170,6 @@ def main():
 
     sub.add_parser("preset-list", help="List all saved presets")
 
-    for light in ("side", "ambient"):
-        lp = sub.add_parser(light, help=f"Control {light} LED strip")
-        ls = lp.add_subparsers(dest="sub_cmd", required=True)
-        m = ls.add_parser("mode", help="Set mode (0=Wave, 1=Mix, 2=Static, 3=Breath, 4=Off)")
-        m.add_argument("value", type=int, metavar="0-4")
-        s = ls.add_parser("speed", help="Set speed step (0-4, higher=slower)")
-        s.add_argument("value", type=int, metavar="0-4")
-        c = ls.add_parser("color", help="Set static color (hue/sat 0-255)")
-        c.add_argument("hue", type=int)
-        c.add_argument("sat", type=int)
-        b = ls.add_parser("brightness", help="Set brightness step (0-5)")
-        b.add_argument("value", type=int, metavar="0-5")
-        ls.add_parser("read", help="Read current state")
-
     args = parser.parse_args()
 
     if args.cmd == "effects":
@@ -270,36 +251,6 @@ def main():
                 else:
                     for name, p in presets.items():
                         print(f"  {name}: effect={p['effect']} hue={p['hue']} sat={p['sat']} brightness={p['brightness']} speed={p['speed']}")
-        elif args.cmd in ("side", "ambient"):
-            ids = SIDE_IDS if args.cmd == "side" else AMBIENT_IDS
-            probe = query(d, CUSTOM_MENU_GET, CUSTOM_CHANNEL, ids["mode"])
-            if not probe or probe[0] == 0xff:
-                sys.exit(
-                    f"{args.cmd} HID control returned id_unhandled (0xff). "
-                    f"Stock NuPhy firmware does not implement channel 0 — "
-                    f"flash the ryodeushii community firmware (see CLAUDE.md)."
-                )
-            if args.sub_cmd == "mode":
-                send(d, CUSTOM_MENU_SET, CUSTOM_CHANNEL, ids["mode"], args.value)
-            elif args.sub_cmd == "speed":
-                send(d, CUSTOM_MENU_SET, CUSTOM_CHANNEL, ids["speed"], args.value)
-            elif args.sub_cmd == "color":
-                send(d, CUSTOM_MENU_SET, CUSTOM_CHANNEL, ids["color"], args.hue, args.sat)
-            elif args.sub_cmd == "brightness":
-                send(d, CUSTOM_MENU_SET, CUSTOM_CHANNEL, ids["brightness"], args.value)
-            elif args.sub_cmd == "read":
-                for key in ("mode", "speed", "brightness"):
-                    r = query(d, CUSTOM_MENU_GET, CUSTOM_CHANNEL, ids[key])
-                    val = r[3] if r else "?"
-                    if key == "mode" and isinstance(val, int) and val < len(SIDE_MODE_NAMES):
-                        print(f"{key}: {val} ({SIDE_MODE_NAMES[val]})")
-                    else:
-                        print(f"{key}: {val}")
-                r = query(d, CUSTOM_MENU_GET, CUSTOM_CHANNEL, ids["color"])
-                if r:
-                    h, s = r[3], r[4]
-                    rr, gg, bb = hs_to_rgb(h, s)
-                    print(f"color: hue={h} sat={s} → #{rr:02x}{gg:02x}{bb:02x} ({color_name(h, s)})")
     finally:
         d.close()
 

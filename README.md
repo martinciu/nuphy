@@ -22,8 +22,6 @@ uv run nuphy-rgb.py speed <0-255>          # effect animation speed
 uv run nuphy-rgb.py rgb <r> <g> <b>        # set color by RGB values (0-255 each)
 uv run nuphy-rgb.py rgb <#rrggbb>          # set color by hex
 uv run nuphy-rgb.py effects                # list all effects (⌨ marks interactive ones)
-uv run nuphy-rgb.py side <subcmd>          # side LED strip (mode/speed/color/brightness/read) — needs ryodeushii firmware
-uv run nuphy-rgb.py ambient <subcmd>       # ambient/logo LED (same subcommands) — needs ryodeushii firmware
 uv run nuphy-rgb.py read                   # read effect, color, brightness, speed from keyboard
 uv run nuphy-rgb.py save                   # persist to EEPROM
 ```

@@ -63,19 +63,6 @@ Current presets: `warm-white` (effect=1, hue=0, sat=208, brightness=255).
 
 Effect index → name mapping: see README.md for the full table.
 
-**Side & ambient LED HID control** (channel 0) — `side` and `ambient` subcommands:
-
-```fish
-uv run nuphy-rgb.py side mode <0-4>          # 0=Wave 1=Mix 2=Static 3=Breath 4=Off
-uv run nuphy-rgb.py side speed <0-4>         # higher = slower
-uv run nuphy-rgb.py side color <hue> <sat>   # 0-255 each
-uv run nuphy-rgb.py side brightness <0-5>
-uv run nuphy-rgb.py side read
-# same subcommands under: ambient
-```
-
-**Requires the ryodeushii community firmware.** Stock NuPhy firmware rejects channel 0 commands with `id_unhandled` (0xff). Probed empirically: stock firmware handles only QMK's standard `rgb_matrix` channel 3 (main backlight); the nuphy custom config channel (side, ambient, debounce, sleep, etc.) is only wired up in `ext/qmk-firmware/keyboards/nuphy/common/config/via.c`. The script exits with a clear error if it sees `id_unhandled`.
-
 ## ryodeushii/qmk-firmware — community fork
 
 Cloned at `ext/qmk-firmware/`. Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
