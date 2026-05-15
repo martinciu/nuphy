@@ -19,6 +19,8 @@ uv run nuphy-rgb.py effect <0-40>          # set lighting effect
 uv run nuphy-rgb.py color <hue> <sat>      # hue/sat 0-255 each
 uv run nuphy-rgb.py brightness <0-255>
 uv run nuphy-rgb.py speed <0-255>          # effect animation speed
+uv run nuphy-rgb.py rgb <r> <g> <b>        # set color by RGB values (0-255 each)
+uv run nuphy-rgb.py rgb <#rrggbb>          # set color by hex
 uv run nuphy-rgb.py read                   # read effect, color, brightness, speed from keyboard
 uv run nuphy-rgb.py save                   # persist to EEPROM
 ```

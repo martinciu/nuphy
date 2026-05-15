@@ -28,6 +28,24 @@ CUSTOM_MENU_SAVE = 0x09
 CHANNEL = 3
 
 
+def rgb_to_hs(r: int, g: int, b: int) -> tuple[int, int]:
+    """Convert RGB to keyboard hue/sat bytes (0-255) using inverse of VIA's formula."""
+    r_, g_, b_ = r / 255, g / 255, b / 255
+    cmax, cmin = max(r_, g_, b_), min(r_, g_, b_)
+    delta = cmax - cmin
+    if delta == 0:
+        h = 0
+    elif cmax == r_:
+        h = 60 * (((g_ - b_) / delta) % 6)
+    elif cmax == g_:
+        h = 60 * ((b_ - r_) / delta + 2)
+    else:
+        h = 60 * ((r_ - g_) / delta + 4)
+    h = (h + 360) % 360
+    s = delta / cmax if cmax != 0 else 0
+    return round(h * 255 / 360), round(s * 255)
+
+
 def hs_to_rgb(hue_byte: int, sat_byte: int) -> tuple[int, int, int]:
     """Convert keyboard hue/sat (0-255) to RGB using VIA's formula."""
     sat = sat_byte / 255
@@ -121,6 +139,11 @@ def main():
     p.add_argument("hue", type=int, metavar="0-255")
     p.add_argument("sat", type=int, metavar="0-255")
 
+    p = sub.add_parser("rgb", help="Set color by R G B values or hex (#rrggbb)")
+    p.add_argument("r_or_hex", metavar="R|#hex")
+    p.add_argument("g", type=int, metavar="G", nargs="?")
+    p.add_argument("b", type=int, metavar="B", nargs="?")
+
     sub.add_parser("read", help="Read current effect, color, brightness, speed")
     sub.add_parser("save", help="Persist settings to EEPROM")
 
@@ -144,6 +167,17 @@ def main():
             send(d, CUSTOM_MENU_SET, CHANNEL, 3, args.value)
         elif args.cmd == "color":
             send(d, CUSTOM_MENU_SET, CHANNEL, 4, args.hue, args.sat)
+        elif args.cmd == "rgb":
+            if args.r_or_hex.startswith("#") or (len(args.r_or_hex) == 6 and all(c in "0123456789abcdefABCDEF" for c in args.r_or_hex)):
+                hex_str = args.r_or_hex.lstrip("#")
+                r, g, b = int(hex_str[0:2], 16), int(hex_str[2:4], 16), int(hex_str[4:6], 16)
+            elif args.g is not None and args.b is not None:
+                r, g, b = int(args.r_or_hex), args.g, args.b
+            else:
+                sys.exit("Usage: rgb <r> <g> <b>  or  rgb #rrggbb")
+            hue, sat = rgb_to_hs(r, g, b)
+            send(d, CUSTOM_MENU_SET, CHANNEL, 4, hue, sat)
+            print(f"#{r:02x}{g:02x}{b:02x} → hue={hue} sat={sat}")
         elif args.cmd == "read":
             EFFECT_NAMES = [
                 "All Off", "Solid Color", "Gradient Up/Down", "Gradient Left/Right",
