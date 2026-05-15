@@ -87,15 +87,29 @@ def main():
         elif args.cmd == "color":
             send(d, CUSTOM_MENU_SET, CHANNEL, 4, args.hue, args.sat)
         elif args.cmd == "read":
-            labels = {1: "brightness", 2: "effect", 3: "speed", 4: "color"}
-            for idx, label in labels.items():
+            EFFECT_NAMES = [
+                "All Off", "Solid Color", "Gradient Up/Down", "Gradient Left/Right",
+                "Breathing", "Band Sat.", "Band Val.", "Pinwheel Sat.", "Pinwheel Val.",
+                "Spiral Sat.", "Spiral Val.", "Cycle All", "Cycle Left/Right", "Cycle Up/Down",
+                "Rainbow Moving Chevron", "Cycle Out/In", "Cycle Out/In Dual", "Cycle Pinwheel",
+                "Cycle Spiral", "Dual Beacon", "Rainbow Beacon", "Rainbow Pinwheels",
+                "Raindrops", "Jellybean Raindrops", "Hue Breathing", "Hue Pendulum", "Hue Wave",
+                "Typing Heatmap", "Digital Rain", "Reactive Simple", "Reactive", "Reactive Wide",
+                "Reactive Multiwide", "Reactive Cross", "Reactive Multicross", "Reactive Nexus",
+                "Reactive MultiNexus", "Splash", "MultiSplash", "Solid Splash", "Solid MultiSplash",
+            ]
+            for idx, label in {1: "brightness", 2: "effect", 3: "speed", 4: "color"}.items():
                 resp = query(d, CUSTOM_MENU_GET, CHANNEL, idx)
                 if resp is None:
                     print(f"{label}: no response")
+                elif label == "effect":
+                    n = resp[3]
+                    name = EFFECT_NAMES[n] if n < len(EFFECT_NAMES) else "Unknown"
+                    print(f"effect: {n} ({name})")
+                elif label == "color":
+                    print(f"color: hue={resp[3]} sat={resp[4]}")
                 else:
-                    values = resp[3:]
-                    values = [v for v in values if v != 0] or [0]
-                    print(f"{label}: {values}")
+                    print(f"{label}: {resp[3]}")
         elif args.cmd == "save":
             send(d, CUSTOM_MENU_SAVE, CHANNEL)
         elif args.cmd == "preset":
