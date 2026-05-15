@@ -30,7 +30,10 @@ Key files:
 
 ```fish
 uv run nuphy-rgb.py effect <0-40>
+uv run nuphy-rgb.py effects                          # list all effects (⌨ marks interactive)
 uv run nuphy-rgb.py color <hue 0-255> <sat 0-255>   # hue: 0=red 85=green 170=blue
+uv run nuphy-rgb.py rgb <r> <g> <b>                 # set color by RGB values
+uv run nuphy-rgb.py rgb <#rrggbb>                   # set color by hex
 uv run nuphy-rgb.py brightness <0-255>
 uv run nuphy-rgb.py speed <0-255>
 uv run nuphy-rgb.py read                             # read effect, color, brightness, speed from keyboard
@@ -53,13 +56,13 @@ uv run nuphy-rgb.py preset-save <name>  # capture current keyboard state as pres
 uv run nuphy-rgb.py preset-list         # list all presets
 ```
 
-Current presets: `warm-white` (effect=1, hue=0, sat=195, brightness=202).
+Current presets: `warm-white` (effect=1, hue=0, sat=208, brightness=255).
 
 Effect index → name mapping: see README.md for the full table.
 
 ## ryodeushii/qmk-firmware — community fork
 
-Cloned at `qmk-firmware/`. Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
+Cloned at `ext/qmk-firmware/`. Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
 
 **Build and flash:**
 ```
@@ -73,7 +76,7 @@ Alternatively flash a pre-built `.bin` via [QMK Toolbox](https://github.com/qmk/
 - Hold `Esc` and plug in USB
 - Remove the CapsLock keycap, hold the small button underneath, then plug in
 
-**VIA JSON for this fork:** `qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/NuPhy Air75 V2 via3.json` — use this instead of `config/nuphy-air75-v2-via3.json` when running community firmware.
+**VIA JSON for this fork:** `ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/NuPhy Air75 V2 via3.json` — use this instead of `config/nuphy-air75-v2-via3.json` when running community firmware.
 
 **Layer layout** (Mac keymap — Windows identical except F-row and SOCD keys):
 - Layer 0: Mac base
