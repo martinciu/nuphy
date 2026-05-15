@@ -28,6 +28,64 @@ CUSTOM_MENU_SAVE = 0x09
 CHANNEL = 3
 
 
+def hs_to_rgb(hue_byte: int, sat_byte: int) -> tuple[int, int, int]:
+    """Convert keyboard hue/sat (0-255) to RGB using VIA's formula."""
+    sat = sat_byte / 255
+    hue = round(360 * hue_byte) / 255
+    c = sat
+    x = c * (1 - abs((hue / 60) % 2 - 1))
+    m = 1 - c
+    if hue < 60:
+        rp, gp, bp = c, x, 0
+    elif hue < 120:
+        rp, gp, bp = x, c, 0
+    elif hue < 180:
+        rp, gp, bp = 0, c, x
+    elif hue < 240:
+        rp, gp, bp = 0, x, c
+    elif hue < 300:
+        rp, gp, bp = x, 0, c
+    else:
+        rp, gp, bp = c, 0, x
+    return round(255 * (m + rp)), round(255 * (m + gp)), round(255 * (m + bp))
+
+
+def color_name(hue_byte: int, sat_byte: int) -> str:
+    sat = sat_byte / 255
+    hue = round(360 * hue_byte) / 255
+    if sat < 0.15:
+        return "white"
+    if sat < 0.45:
+        if hue < 30 or hue >= 330:
+            return "warm white"
+        if hue < 90:
+            return "pale yellow"
+        if hue < 150:
+            return "pale green"
+        if hue < 210:
+            return "pale cyan"
+        if hue < 270:
+            return "pale blue"
+        return "pale purple"
+    if hue < 15 or hue >= 345:
+        return "red"
+    if hue < 45:
+        return "orange"
+    if hue < 75:
+        return "yellow"
+    if hue < 150:
+        return "green"
+    if hue < 195:
+        return "cyan"
+    if hue < 255:
+        return "blue"
+    if hue < 285:
+        return "indigo"
+    if hue < 330:
+        return "purple"
+    return "pink"
+
+
 def find_via_device():
     for info in hid.enumerate(VID, PID):
         if info.get("usage_page") == 0xFF60 and info.get("usage") == 0x61:
@@ -107,7 +165,10 @@ def main():
                     name = EFFECT_NAMES[n] if n < len(EFFECT_NAMES) else "Unknown"
                     print(f"effect: {n} ({name})")
                 elif label == "color":
-                    print(f"color: hue={resp[3]} sat={resp[4]}")
+                    h, s = resp[3], resp[4]
+                    r, g, b = hs_to_rgb(h, s)
+                    name = color_name(h, s)
+                    print(f"color: hue={h} sat={s} → #{r:02x}{g:02x}{b:02x} ({name})")
                 else:
                     print(f"{label}: {resp[3]}")
         elif args.cmd == "save":
