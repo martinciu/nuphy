@@ -72,29 +72,49 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ### Effect index reference
 
-| Index | Name | Index | Name |
-|-------|------|-------|------|
-| 0 | All Off | 21 | Rainbow Pinwheels |
-| 1 | Solid Color | 22 | Raindrops |
-| 2 | Gradient Up/Down | 23 | Jellybean Raindrops |
-| 3 | Gradient Left/Right | 24 | Hue Breathing |
-| 4 | Breathing | 25 | Hue Pendulum |
-| 5 | Band Sat. | 26 | Hue Wave |
-| 6 | Band Val. | 27 | Typing Heatmap |
-| 7 | Pinwheel Sat. | 28 | Digital Rain |
-| 8 | Pinwheel Val. | 29 | Reactive Simple |
-| 9 | Spiral Sat. | 30 | Reactive |
-| 10 | Spiral Val. | 31 | Reactive Wide |
-| 11 | Cycle All | 32 | Reactive Multiwide |
-| 12 | Cycle Left/Right | 33 | Reactive Cross |
-| 13 | Cycle Up/Down | 34 | Reactive Multicross |
-| 14 | Rainbow Moving Chevron | 35 | Reactive Nexus |
-| 15 | Cycle Out/In | 36 | Reactive MultiNexus |
-| 16 | Cycle Out/In Dual | 37 | Splash |
-| 17 | Cycle Pinwheel | 38 | MultiSplash |
-| 18 | Cycle Spiral | 39 | Solid Splash |
-| 19 | Dual Beacon | 40 | Solid MultiSplash |
+| Index | Name | Interactive | Custom color |
+|-------|------|-------------|--------------|
+| 0 | All Off | | |
+| 1 | Solid Color | | ✓ |
+| 2 | Gradient Up/Down | | |
+| 3 | Gradient Left/Right | | |
+| 4 | Breathing | | ✓ |
+| 5 | Band Sat. | | |
+| 6 | Band Val. | | |
+| 7 | Pinwheel Sat. | | |
+| 8 | Pinwheel Val. | | |
+| 9 | Spiral Sat. | | |
+| 10 | Spiral Val. | | |
+| 11 | Cycle All | | |
+| 12 | Cycle Left/Right | | |
+| 13 | Cycle Up/Down | | |
+| 14 | Rainbow Moving Chevron | | |
+| 15 | Cycle Out/In | | |
+| 16 | Cycle Out/In Dual | | |
+| 17 | Cycle Pinwheel | | |
+| 18 | Cycle Spiral | | |
+| 19 | Dual Beacon | | |
 | 20 | Rainbow Beacon | | |
+| 21 | Rainbow Pinwheels | | |
+| 22 | Raindrops | | |
+| 23 | Jellybean Raindrops | | |
+| 24 | Hue Breathing | | |
+| 25 | Hue Pendulum | | |
+| 26 | Hue Wave | | |
+| 27 | Typing Heatmap | ✓ | ✗ hardcoded blue→red |
+| 28 | Digital Rain | | |
+| 29 | Reactive Simple | ✓ | ✓ flashes your color, fades out |
+| 30 | Reactive | ✓ | ✓ shifts hue on each hit |
+| 31 | Reactive Wide | ✓ | ✓ spreads to nearby keys |
+| 32 | Reactive Multiwide | ✓ | ✓ spreads to nearby keys |
+| 33 | Reactive Cross | ✓ | ✓ spreads to nearby keys |
+| 34 | Reactive Multicross | ✓ | ✓ spreads to nearby keys |
+| 35 | Reactive Nexus | ✓ | ✓ spreads to nearby keys |
+| 36 | Reactive MultiNexus | ✓ | ✓ spreads to nearby keys |
+| 37 | Splash | ✓ | ✓ ripple outward, cycles hue |
+| 38 | MultiSplash | ✓ | ✓ ripple outward, cycles hue |
+| 39 | Solid Splash | ✓ | ✓ ripple in solid color |
+| 40 | Solid MultiSplash | ✓ | ✓ ripple in solid color |
 
 ## VIA browser (keymap editing)
 
