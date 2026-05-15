@@ -72,8 +72,8 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ### Effect index reference
 
-| Index | Name | Interactive | Custom color |
-|-------|------|-------------|--------------|
+| Index | Name | Interactive | Custom color | Description |
+|-------|------|-------------|--------------|-------------|
 | 0 | All Off | | |
 | 1 | Solid Color | | ✓ |
 | 2 | Gradient Up/Down | | |
@@ -101,20 +101,20 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 | 24 | Hue Breathing | | |
 | 25 | Hue Pendulum | | |
 | 26 | Hue Wave | | |
-| 27 | Typing Heatmap | ✓ | ✗ hardcoded blue→red |
-| 28 | Digital Rain | | |
-| 29 | Reactive Simple | ✓ | ✓ flashes your color, fades out |
-| 30 | Reactive | ✓ | ✓ shifts hue on each hit |
-| 31 | Reactive Wide | ✓ | ✓ spreads to nearby keys |
-| 32 | Reactive Multiwide | ✓ | ✓ spreads to nearby keys |
-| 33 | Reactive Cross | ✓ | ✓ spreads to nearby keys |
-| 34 | Reactive Multicross | ✓ | ✓ spreads to nearby keys |
-| 35 | Reactive Nexus | ✓ | ✓ spreads to nearby keys |
-| 36 | Reactive MultiNexus | ✓ | ✓ spreads to nearby keys |
-| 37 | Splash | ✓ | ✓ ripple outward, cycles hue |
-| 38 | MultiSplash | ✓ | ✓ ripple outward, cycles hue |
-| 39 | Solid Splash | ✓ | ✓ ripple in solid color |
-| 40 | Solid MultiSplash | ✓ | ✓ ripple in solid color |
+| 27 | Typing Heatmap | ✓ | ✗ | Keys heat up red as you type, cool down to blue when idle — hardcoded, color setting has no effect on hue |
+| 28 | Digital Rain | | | |
+| 29 | Reactive Simple | ✓ | ✓ | Only the pressed key flashes in your color then fades — no spread |
+| 30 | Reactive | ✓ | ✓ | Like Simple but hue shifts up to 64° per keypress, so rapid typing produces a rainbow across keys |
+| 31 | Reactive Wide | ✓ | ✓ | Bright shockwave expands outward from keypress, brightening nearby keys as it passes |
+| 32 | Reactive Multiwide | ✓ | ✓ | Like Wide but tracks all recent keypresses simultaneously — overlapping waves |
+| 33 | Reactive Cross | ✓ | ✓ | Flash spreads along the row and column of the pressed key only — cross shape |
+| 34 | Reactive Multicross | ✓ | ✓ | Like Cross but tracks all recent keypresses simultaneously |
+| 35 | Reactive Nexus | ✓ | ✓ | Narrow halo ring expands from keypress; hue shifts slightly by vertical position giving a gradient ring |
+| 36 | Reactive MultiNexus | ✓ | ✓ | Like Nexus but tracks all recent keypresses simultaneously |
+| 37 | Splash | ✓ | ✓ | Ring ripple expands from keypress with hue rotating as it travels — rainbow ring |
+| 38 | MultiSplash | ✓ | ✓ | Like Splash but tracks all recent keypresses simultaneously |
+| 39 | Solid Splash | ✓ | ✓ | Ring ripple in your solid color — same as Splash but no hue rotation |
+| 40 | Solid MultiSplash | ✓ | ✓ | Like Solid Splash but tracks all recent keypresses simultaneously |
 
 ## VIA browser (keymap editing)
 
