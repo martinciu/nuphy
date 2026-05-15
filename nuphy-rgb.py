@@ -27,6 +27,20 @@ CUSTOM_MENU_GET = 0x08
 CUSTOM_MENU_SAVE = 0x09
 CHANNEL = 3
 
+INTERACTIVE_EFFECTS = {27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40}
+
+EFFECT_NAMES = [
+    "All Off", "Solid Color", "Gradient Up/Down", "Gradient Left/Right",
+    "Breathing", "Band Sat.", "Band Val.", "Pinwheel Sat.", "Pinwheel Val.",
+    "Spiral Sat.", "Spiral Val.", "Cycle All", "Cycle Left/Right", "Cycle Up/Down",
+    "Rainbow Moving Chevron", "Cycle Out/In", "Cycle Out/In Dual", "Cycle Pinwheel",
+    "Cycle Spiral", "Dual Beacon", "Rainbow Beacon", "Rainbow Pinwheels",
+    "Raindrops", "Jellybean Raindrops", "Hue Breathing", "Hue Pendulum", "Hue Wave",
+    "Typing Heatmap", "Digital Rain", "Reactive Simple", "Reactive", "Reactive Wide",
+    "Reactive Multiwide", "Reactive Cross", "Reactive Multicross", "Reactive Nexus",
+    "Reactive MultiNexus", "Splash", "MultiSplash", "Solid Splash", "Solid MultiSplash",
+]
+
 
 def rgb_to_hs(r: int, g: int, b: int) -> tuple[int, int]:
     """Convert RGB to keyboard hue/sat bytes (0-255) using inverse of VIA's formula."""
@@ -144,6 +158,7 @@ def main():
     p.add_argument("g", type=int, metavar="G", nargs="?")
     p.add_argument("b", type=int, metavar="B", nargs="?")
 
+    sub.add_parser("effects", help="List all available effects with their index")
     sub.add_parser("read", help="Read current effect, color, brightness, speed")
     sub.add_parser("save", help="Persist settings to EEPROM")
 
@@ -156,6 +171,13 @@ def main():
     sub.add_parser("preset-list", help="List all saved presets")
 
     args = parser.parse_args()
+
+    if args.cmd == "effects":
+        for i, name in enumerate(EFFECT_NAMES):
+            marker = "⌨" if i in INTERACTIVE_EFFECTS else " "
+            print(f"  {i:2d} {marker} {name}")
+        return
+
     d = find_via_device()
 
     try:
@@ -179,17 +201,6 @@ def main():
             send(d, CUSTOM_MENU_SET, CHANNEL, 4, hue, sat)
             print(f"#{r:02x}{g:02x}{b:02x} → hue={hue} sat={sat}")
         elif args.cmd == "read":
-            EFFECT_NAMES = [
-                "All Off", "Solid Color", "Gradient Up/Down", "Gradient Left/Right",
-                "Breathing", "Band Sat.", "Band Val.", "Pinwheel Sat.", "Pinwheel Val.",
-                "Spiral Sat.", "Spiral Val.", "Cycle All", "Cycle Left/Right", "Cycle Up/Down",
-                "Rainbow Moving Chevron", "Cycle Out/In", "Cycle Out/In Dual", "Cycle Pinwheel",
-                "Cycle Spiral", "Dual Beacon", "Rainbow Beacon", "Rainbow Pinwheels",
-                "Raindrops", "Jellybean Raindrops", "Hue Breathing", "Hue Pendulum", "Hue Wave",
-                "Typing Heatmap", "Digital Rain", "Reactive Simple", "Reactive", "Reactive Wide",
-                "Reactive Multiwide", "Reactive Cross", "Reactive Multicross", "Reactive Nexus",
-                "Reactive MultiNexus", "Splash", "MultiSplash", "Solid Splash", "Solid MultiSplash",
-            ]
             for idx, label in {1: "brightness", 2: "effect", 3: "speed", 4: "color"}.items():
                 resp = query(d, CUSTOM_MENU_GET, CHANNEL, idx)
                 if resp is None:
