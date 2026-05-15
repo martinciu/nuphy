@@ -1,9 +1,9 @@
 {
   "warm-white": {
     "effect": 1,
-    "brightness": 255,
+    "brightness": 204,
     "speed": 127,
     "hue": 0,
-    "sat": 208
+    "sat": 194
   }
 }
