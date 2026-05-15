@@ -10,7 +10,7 @@ Key files:
 - `config/nuphy-air75-v2-via3.json` — keyboard definition (matrix layout, lighting menus, custom keycodes). Load this in VIA under "Design" → "Load Draft Definition".
 - `config/martinciu.layout.json` — personal keymap export (8 layers, macros). Restore via VIA's "Save+Load" tab.
 - `config/presets.json` — named RGB presets (used by `nuphy-rgb.py preset*` commands).
-- `ext/` — git submodules: `qmk-firmware` (ryodeushii fork), `via/app`, `via/reader`.
+- `ext/` — git submodules: `qmk-firmware` (ryodeushii fork), `the-via/app`, `the-via/reader`, `the-via/devtools`.
 
 ## Key concepts
 
