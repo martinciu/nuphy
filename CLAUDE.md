@@ -63,6 +63,24 @@ Current presets: `warm-white` (effect=1, hue=0, sat=208, brightness=255).
 
 Effect index → name mapping: see README.md for the full table.
 
+## Personal keymap — Fn-layer RGB bindings
+
+From `config/martinciu.layout.json` (Layer 1, Mac Fn). Runs on stock NuPhy firmware.
+
+| Fn + key | Keycode | Action |
+|----------|---------|--------|
+| Fn + PgUp | `RGB_MOD` | Next effect |
+| Fn + PgDn | `RGB_RMOD` | Previous effect |
+| Fn + Home | `RGB_SAI` | Saturation + |
+| Fn + End | `RGB_SAD` | Saturation − |
+| Fn + ↑ | `RGB_VAI` | Brightness + |
+| Fn + ↓ | `RGB_VAD` | Brightness − |
+| Fn + ← | `RGB_HUD` | Hue − |
+| Fn + → | `RGB_HUI` | Hue + |
+| Fn + , | `RGB_SPD` | Effect speed − |
+| Fn + . | `RGB_SPI` | Effect speed + |
+| Fn + M (hold) | `MO(4)` | Side LED controls layer (uses `CUSTOM(12-17)`, see VIA JSON) |
+
 ## ryodeushii/qmk-firmware — community fork
 
 Cloned at `ext/qmk-firmware/`. Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
