@@ -10,12 +10,6 @@ Key files:
 - `config/nuphy-air75-v2-via3.json` — keyboard definition (matrix layout, lighting menus, custom keycodes). Load this in VIA under "Design" → "Load Draft Definition".
 - `config/martinciu.layout.json` — personal keymap export (8 layers, macros). Restore via VIA's "Save+Load" tab.
 - `config/presets.json` — named RGB presets (used by `nuphy-rgb.py preset*` commands).
-- `../_ext/qmk-firmware/` — ryodeushii community firmware fork (NuPhy-only, branch `nuphy-keyboards`)
-- `../_ext/the-via/app` — VIA browser app source
-- `../_ext/the-via/reader` — VIA definition JSON parser/validator library
-- `../_ext/the-via/devtools` — Chrome extension for debugging raw VIA HID commands
-
-The `_ext/*` checkouts live outside this repo at `$PROJECTS_HOME/_ext` (a sibling directory, so `../_ext` from the repo root). They are standalone clones, not git submodules.
 
 ## Key concepts
 
@@ -82,62 +76,6 @@ From `config/martinciu.layout.json` (Layer 1, Mac Fn). Runs on stock NuPhy firmw
 | Fn + , | `RGB_SPD` | Effect speed − |
 | Fn + . | `RGB_SPI` | Effect speed + |
 | Fn + M (hold) | `MO(4)` | Side LED controls layer (uses `CUSTOM(12-17)`, see VIA JSON) |
-
-## ryodeushii/qmk-firmware — community fork
-
-Cloned at `../_ext/qmk-firmware/` (sibling of this repo, under `$PROJECTS_HOME/_ext`). Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
-
-**Build and flash:**
-```
-make nuphy/air75v2/ansi:via
-make nuphy/air75v2/ansi:via:flash
-```
-
-Alternatively flash a pre-built `.bin` via [QMK Toolbox](https://github.com/qmk/qmk_toolbox/releases) — simpler, no build environment needed.
-
-**Bootloader entry (two methods):**
-- Hold `Esc` and plug in USB
-- Remove the CapsLock keycap, hold the small button underneath, then plug in
-
-**VIA JSON for this fork:** `../_ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/NuPhy Air75 V2 via3.json` — use this instead of `config/nuphy-air75-v2-via3.json` when running community firmware.
-
-**Layer layout** (Mac keymap — Windows identical except F-row and SOCD keys):
-- Layer 0: Mac base
-- Layer 1: Mac Fn (hold `Fn`)
-- Layer 2: Win base
-- Layer 3: Win Fn (hold `Fn`)
-- Layer 4: Side LED controls (hold `Fn+M`)
-- Layer 5: Ambient LED controls (hold `Fn+N`)
-
-**Key Fn-layer bindings** (`../_ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/keymap.c`):
-
-| Keys | Action |
-|------|--------|
-| Fn+1/2/3 | BLE profile 1/2/3 |
-| Fn+4 | RF (2.4GHz dongle) |
-| Fn+Y/U/I | Press debounce −/show/+ |
-| Fn+H/J/K | Release debounce −/show/+ |
-| Fn+S/D/F | Sleep timeout −/show/+ |
-| Fn+O | Toggle deep sleep |
-| Fn+P | Toggle USB sleep |
-| Fn+A | Toggle CapsLock indicator mode |
-| Fn+[ | Device reset |
-| Fn+C | RGB test |
-| Fn+↑/↓/←/→ | RGB brightness+/−, next effect, hue+ |
-| Fn+,/. | RGB effect speed −/+ |
-| Fn+M (hold) | Side LED controls layer |
-| Fn+N (hold) | Ambient (logo) LED controls layer |
-| Fn+F3/F4/F5 | SOCD on/off/toggle (Win layer only) |
-
-**Side LED controls** (while holding `Fn+M`): ←=mode, ↑=brightness+, ↓=brightness−, ,/.=speed, →=hue+
-
-**Ambient LED controls** (while holding `Fn+N`): same layout as side controls
-
-**Notable fixes over stock firmware:**
-- Print Screen actually sends `KC_PSCR` (stock sent Win+Shift+S)
-- First keystrokes on wireless wake no longer dropped
-- Left Ctrl backlight LED lit correctly
-- White LED flash on deep-sleep wake eliminated
 
 ## Editing guidelines
 

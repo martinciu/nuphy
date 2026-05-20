@@ -8,7 +8,6 @@ VIA keymap and RGB control scripts for the NuPhy Air75 V2 (VID `0x19F5`, PID `0x
 - `config/martinciu.layout.json` — personal keymap (8 layers, macros)
 - `config/presets.json` — named RGB presets
 - `nuphy-rgb.py` — command-line RGB control script
-- `../_ext/` — external sources (standalone clones kept outside this repo, at `$PROJECTS_HOME/_ext`): `qmk-firmware`, `the-via/app`, `the-via/reader`, `the-via/devtools`
 
 ## RGB control
 
