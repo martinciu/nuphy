@@ -76,51 +76,51 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ### Effect index reference
 
-Behavior sourced from the QMK RGB-matrix animations in the firmware. **Interactive** ✓ = the effect reacts to keypresses. **Custom color** ✓ = it renders in your configured hue/sat (set via `color`/`rgb`); ✗ = a fixed or full-spectrum palette that ignores your color.
+Behavior sourced from the QMK RGB-matrix animations in the firmware. **Interactive** ✔ = the effect reacts to keypresses. **Custom color** ✔ = it renders in your configured hue/sat (set via `color`/`rgb`); ✘ = a fixed or full-spectrum palette that ignores your color.
 
 | Index | Name | Interactive | Custom color | Description |
 |-------|------|-------------|--------------|-------------|
-| 0 | All Off | ✗ | ✗ | All LEDs off. |
-| 1 | Solid Color | ✗ | ✓ | Every key lit in your configured color — no animation. |
-| 2 | Gradient Up/Down | ✗ | ✓ | Static vertical gradient; hue shifts away from your base color down the rows (speed sets the spread). |
-| 3 | Gradient Left/Right | ✗ | ✓ | Static horizontal gradient; hue shifts away from your base color across the columns (speed sets the spread). |
-| 4 | Breathing | ✗ | ✓ | Your color fades the whole board in and out. |
-| 5 | Band Sat. | ✗ | ✓ | A saturation band in your hue sweeps left→right; keys outside it fade toward white. |
-| 6 | Band Val. | ✗ | ✓ | A brightness band in your hue sweeps left→right; keys outside it dim to off. |
-| 7 | Pinwheel Sat. | ✗ | ✓ | A saturation wedge in your hue rotates around the board's center. |
-| 8 | Pinwheel Val. | ✗ | ✓ | A brightness wedge in your hue rotates around the board's center. |
-| 9 | Spiral Sat. | ✗ | ✓ | A saturation spiral in your hue winds out from the center. |
-| 10 | Spiral Val. | ✗ | ✓ | A brightness spiral in your hue winds out from the center. |
-| 11 | Cycle All | ✗ | ✗ | Whole board cycles through the full hue spectrum in unison. |
-| 12 | Cycle Left/Right | ✗ | ✗ | Rainbow scrolls horizontally across the board. |
-| 13 | Cycle Up/Down | ✗ | ✗ | Rainbow scrolls vertically across the board. |
-| 14 | Rainbow Moving Chevron | ✗ | ✗ | A rainbow chevron (›) pattern scrolls to the right. |
-| 15 | Cycle Out/In | ✗ | ✗ | Rainbow cycles from the edges inward to the center. |
-| 16 | Cycle Out/In Dual | ✗ | ✗ | Rainbow cycles inward toward two horizontal centers. |
-| 17 | Cycle Pinwheel | ✗ | ✗ | Rainbow rotates around the center like a pinwheel. |
-| 18 | Cycle Spiral | ✗ | ✗ | Rainbow spirals out from the center. |
-| 19 | Dual Beacon | ✗ | ✓ | Two beams sweep around the center; colors fan out from your base hue. |
-| 20 | Rainbow Beacon | ✗ | ✗ | Two beams sweep around the center spanning the full rainbow. |
-| 21 | Rainbow Pinwheels | ✗ | ✗ | Two counter-rotating rainbow pinwheels. |
-| 22 | Raindrops | ✗ | ✓ | Random keys light and fade in your hue and two neighboring hues. |
-| 23 | Jellybean Raindrops | ✗ | ✗ | Random keys light and fade in fully random colors. |
-| 24 | Hue Breathing | ✗ | ✓ | Whole board in your hue, gently shifting hue (~12° range) as it breathes. |
-| 25 | Hue Pendulum | ✗ | ✓ | Your hue sways back and forth across the board like a pendulum (~12° range). |
-| 26 | Hue Wave | ✗ | ✓ | A gentle hue wave (~24° range) travels across the board from your base color. |
-| 27 | Typing Heatmap | ✓ | ✗ | Keys heat up red as you type, cool down to blue when idle — hardcoded, color setting has no effect on hue |
-| 28 | Digital Rain | ✗ | ✗ | Matrix-style green droplets fall down the columns; always green — only brightness follows your value setting. |
-| 29 | Reactive Simple | ✓ | ✓ | Only the pressed key flashes in your color then fades — no spread |
-| 30 | Reactive | ✓ | ✓ | Like Simple but hue shifts up to 64° per keypress, so rapid typing produces a rainbow across keys |
-| 31 | Reactive Wide | ✓ | ✓ | Bright shockwave expands outward from keypress, brightening nearby keys as it passes |
-| 32 | Reactive Multiwide | ✓ | ✓ | Like Wide but tracks all recent keypresses simultaneously — overlapping waves |
-| 33 | Reactive Cross | ✓ | ✓ | Flash spreads along the row and column of the pressed key only — cross shape |
-| 34 | Reactive Multicross | ✓ | ✓ | Like Cross but tracks all recent keypresses simultaneously |
-| 35 | Reactive Nexus | ✓ | ✓ | Narrow halo ring expands from keypress; hue shifts slightly by vertical position giving a gradient ring |
-| 36 | Reactive MultiNexus | ✓ | ✓ | Like Nexus but tracks all recent keypresses simultaneously |
-| 37 | Splash | ✓ | ✓ | Ring ripple expands from keypress with hue rotating as it travels — rainbow ring |
-| 38 | MultiSplash | ✓ | ✓ | Like Splash but tracks all recent keypresses simultaneously |
-| 39 | Solid Splash | ✓ | ✓ | Ring ripple in your solid color — same as Splash but no hue rotation |
-| 40 | Solid MultiSplash | ✓ | ✓ | Like Solid Splash but tracks all recent keypresses simultaneously |
+| 0 | All Off | ✘ | ✘ | All LEDs off. |
+| 1 | Solid Color | ✘ | ✔ | Every key lit in your configured color — no animation. |
+| 2 | Gradient Up/Down | ✘ | ✔ | Static vertical gradient; hue shifts away from your base color down the rows (speed sets the spread). |
+| 3 | Gradient Left/Right | ✘ | ✔ | Static horizontal gradient; hue shifts away from your base color across the columns (speed sets the spread). |
+| 4 | Breathing | ✘ | ✔ | Your color fades the whole board in and out. |
+| 5 | Band Sat. | ✘ | ✔ | A saturation band in your hue sweeps left→right; keys outside it fade toward white. |
+| 6 | Band Val. | ✘ | ✔ | A brightness band in your hue sweeps left→right; keys outside it dim to off. |
+| 7 | Pinwheel Sat. | ✘ | ✔ | A saturation wedge in your hue rotates around the board's center. |
+| 8 | Pinwheel Val. | ✘ | ✔ | A brightness wedge in your hue rotates around the board's center. |
+| 9 | Spiral Sat. | ✘ | ✔ | A saturation spiral in your hue winds out from the center. |
+| 10 | Spiral Val. | ✘ | ✔ | A brightness spiral in your hue winds out from the center. |
+| 11 | Cycle All | ✘ | ✘ | Whole board cycles through the full hue spectrum in unison. |
+| 12 | Cycle Left/Right | ✘ | ✘ | Rainbow scrolls horizontally across the board. |
+| 13 | Cycle Up/Down | ✘ | ✘ | Rainbow scrolls vertically across the board. |
+| 14 | Rainbow Moving Chevron | ✘ | ✘ | A rainbow chevron (›) pattern scrolls to the right. |
+| 15 | Cycle Out/In | ✘ | ✘ | Rainbow cycles from the edges inward to the center. |
+| 16 | Cycle Out/In Dual | ✘ | ✘ | Rainbow cycles inward toward two horizontal centers. |
+| 17 | Cycle Pinwheel | ✘ | ✘ | Rainbow rotates around the center like a pinwheel. |
+| 18 | Cycle Spiral | ✘ | ✘ | Rainbow spirals out from the center. |
+| 19 | Dual Beacon | ✘ | ✔ | Two beams sweep around the center; colors fan out from your base hue. |
+| 20 | Rainbow Beacon | ✘ | ✘ | Two beams sweep around the center spanning the full rainbow. |
+| 21 | Rainbow Pinwheels | ✘ | ✘ | Two counter-rotating rainbow pinwheels. |
+| 22 | Raindrops | ✘ | ✔ | Random keys light and fade in your hue and two neighboring hues. |
+| 23 | Jellybean Raindrops | ✘ | ✘ | Random keys light and fade in fully random colors. |
+| 24 | Hue Breathing | ✘ | ✔ | Whole board in your hue, gently shifting hue (~12° range) as it breathes. |
+| 25 | Hue Pendulum | ✘ | ✔ | Your hue sways back and forth across the board like a pendulum (~12° range). |
+| 26 | Hue Wave | ✘ | ✔ | A gentle hue wave (~24° range) travels across the board from your base color. |
+| 27 | Typing Heatmap | ✔ | ✘ | Keys heat up red as you type, cool down to blue when idle — hardcoded, color setting has no effect on hue |
+| 28 | Digital Rain | ✘ | ✘ | Matrix-style green droplets fall down the columns; always green — only brightness follows your value setting. |
+| 29 | Reactive Simple | ✔ | ✔ | Only the pressed key flashes in your color then fades — no spread |
+| 30 | Reactive | ✔ | ✔ | Like Simple but hue shifts up to 64° per keypress, so rapid typing produces a rainbow across keys |
+| 31 | Reactive Wide | ✔ | ✔ | Bright shockwave expands outward from keypress, brightening nearby keys as it passes |
+| 32 | Reactive Multiwide | ✔ | ✔ | Like Wide but tracks all recent keypresses simultaneously — overlapping waves |
+| 33 | Reactive Cross | ✔ | ✔ | Flash spreads along the row and column of the pressed key only — cross shape |
+| 34 | Reactive Multicross | ✔ | ✔ | Like Cross but tracks all recent keypresses simultaneously |
+| 35 | Reactive Nexus | ✔ | ✔ | Narrow halo ring expands from keypress; hue shifts slightly by vertical position giving a gradient ring |
+| 36 | Reactive MultiNexus | ✔ | ✔ | Like Nexus but tracks all recent keypresses simultaneously |
+| 37 | Splash | ✔ | ✔ | Ring ripple expands from keypress with hue rotating as it travels — rainbow ring |
+| 38 | MultiSplash | ✔ | ✔ | Like Splash but tracks all recent keypresses simultaneously |
+| 39 | Solid Splash | ✔ | ✔ | Ring ripple in your solid color — same as Splash but no hue rotation |
+| 40 | Solid MultiSplash | ✔ | ✔ | Like Solid Splash but tracks all recent keypresses simultaneously |
 
 ## VIA browser (keymap editing)
 
