@@ -1,5 +1,7 @@
 # NuPhy Air75 V2 — keyboard config & RGB control
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 VIA keymap and RGB control scripts for the NuPhy Air75 V2 (VID `0x19F5`, PID `0x3246`).
 
 ## Files
