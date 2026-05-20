@@ -8,7 +8,6 @@ VIA keymap and RGB control scripts for the NuPhy Air75 V2 (VID `0x19F5`, PID `0x
 - `config/martinciu.layout.json` — personal keymap (8 layers, macros)
 - `config/presets.json` — named RGB presets
 - `nuphy-rgb.py` — command-line RGB control script
-- `ext/` — external sources (git submodules): `qmk-firmware`, `the-via/app`, `the-via/reader`, `the-via/devtools`
 
 ## RGB control
 
@@ -128,4 +127,4 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ## Notes
 
-- `nuphy-rgb.py` preloads `/opt/homebrew/lib/libhidapi.dylib` at startup — requires `brew install hidapi`.
+- `nuphy-rgb.py` needs `libhidapi` (`brew install hidapi`, or `apt install libhidapi-hidraw0` on Linux). It auto-adds the Homebrew lib dir to the dynamic-loader path at startup (Apple Silicon `/opt/homebrew/lib`, Intel macOS `/usr/local/lib`, Homebrew-on-Linux `/home/linuxbrew/.linuxbrew/lib`).
