@@ -10,10 +10,12 @@ Key files:
 - `config/nuphy-air75-v2-via3.json` — keyboard definition (matrix layout, lighting menus, custom keycodes). Load this in VIA under "Design" → "Load Draft Definition".
 - `config/martinciu.layout.json` — personal keymap export (8 layers, macros). Restore via VIA's "Save+Load" tab.
 - `config/presets.json` — named RGB presets (used by `nuphy-rgb.py preset*` commands).
-- `ext/qmk-firmware/` — ryodeushii community firmware fork (NuPhy-only, branch `nuphy-keyboards`)
-- `ext/the-via/app` — VIA browser app source
-- `ext/the-via/reader` — VIA definition JSON parser/validator library
-- `ext/the-via/devtools` — Chrome extension for debugging raw VIA HID commands
+- `../_ext/qmk-firmware/` — ryodeushii community firmware fork (NuPhy-only, branch `nuphy-keyboards`)
+- `../_ext/the-via/app` — VIA browser app source
+- `../_ext/the-via/reader` — VIA definition JSON parser/validator library
+- `../_ext/the-via/devtools` — Chrome extension for debugging raw VIA HID commands
+
+The `_ext/*` checkouts live outside this repo at `$PROJECTS_HOME/_ext` (a sibling directory, so `../_ext` from the repo root). They are standalone clones, not git submodules.
 
 ## Key concepts
 
@@ -83,7 +85,7 @@ From `config/martinciu.layout.json` (Layer 1, Mac Fn). Runs on stock NuPhy firmw
 
 ## ryodeushii/qmk-firmware — community fork
 
-Cloned at `ext/qmk-firmware/`. Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
+Cloned at `../_ext/qmk-firmware/` (sibling of this repo, under `$PROJECTS_HOME/_ext`). Branch: `nuphy-keyboards`. Synced to QMK `0.32.7`.
 
 **Build and flash:**
 ```
@@ -97,7 +99,7 @@ Alternatively flash a pre-built `.bin` via [QMK Toolbox](https://github.com/qmk/
 - Hold `Esc` and plug in USB
 - Remove the CapsLock keycap, hold the small button underneath, then plug in
 
-**VIA JSON for this fork:** `ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/NuPhy Air75 V2 via3.json` — use this instead of `config/nuphy-air75-v2-via3.json` when running community firmware.
+**VIA JSON for this fork:** `../_ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/NuPhy Air75 V2 via3.json` — use this instead of `config/nuphy-air75-v2-via3.json` when running community firmware.
 
 **Layer layout** (Mac keymap — Windows identical except F-row and SOCD keys):
 - Layer 0: Mac base
@@ -107,7 +109,7 @@ Alternatively flash a pre-built `.bin` via [QMK Toolbox](https://github.com/qmk/
 - Layer 4: Side LED controls (hold `Fn+M`)
 - Layer 5: Ambient LED controls (hold `Fn+N`)
 
-**Key Fn-layer bindings** (`ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/keymap.c`):
+**Key Fn-layer bindings** (`../_ext/qmk-firmware/keyboards/nuphy/air75v2/ansi/keymaps/default/keymap.c`):
 
 | Keys | Action |
 |------|--------|
