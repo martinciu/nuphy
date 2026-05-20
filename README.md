@@ -127,4 +127,4 @@ uv run nuphy-rgb.py effect 27 && uv run nuphy-rgb.py save
 
 ## Notes
 
-- `nuphy-rgb.py` preloads `/opt/homebrew/lib/libhidapi.dylib` at startup — requires `brew install hidapi`.
+- `nuphy-rgb.py` needs `libhidapi` (`brew install hidapi`, or `apt install libhidapi-hidraw0` on Linux). It auto-adds the Homebrew lib dir to the dynamic-loader path at startup (Apple Silicon `/opt/homebrew/lib`, Intel macOS `/usr/local/lib`, Homebrew-on-Linux `/home/linuxbrew/.linuxbrew/lib`).

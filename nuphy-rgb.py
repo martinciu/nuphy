@@ -9,12 +9,30 @@
 import sys
 import os
 import json
+import platform
 import argparse
 from pathlib import Path
 
-if "/opt/homebrew/lib" not in os.environ.get("DYLD_LIBRARY_PATH", ""):
-    os.environ["DYLD_LIBRARY_PATH"] = "/opt/homebrew/lib"
-    os.execv(sys.executable, [sys.executable] + sys.argv)
+
+def _ensure_hidapi_on_loader_path():
+    # The `hid` package dlopen()s libhidapi, but the dynamic loader does not
+    # search Homebrew's lib dir by default, and on macOS DYLD_LIBRARY_PATH must
+    # be present at process launch — so we prepend the dir and re-exec once.
+    if platform.system() == "Darwin":
+        var, candidates = "DYLD_LIBRARY_PATH", ["/opt/homebrew/lib", "/usr/local/lib"]
+    elif platform.system() == "Linux":
+        var, candidates = "LD_LIBRARY_PATH", ["/home/linuxbrew/.linuxbrew/lib"]
+    else:
+        return
+
+    current = os.environ.get(var, "").split(os.pathsep)
+    missing = [d for d in candidates if os.path.isdir(d) and d not in current]
+    if missing:
+        os.environ[var] = os.pathsep.join(missing + [p for p in current if p])
+        os.execv(sys.executable, [sys.executable] + sys.argv)
+
+
+_ensure_hidapi_on_loader_path()
 
 import hid
 
